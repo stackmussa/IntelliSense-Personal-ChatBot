@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliConnect - Intelligent Assistant</title>
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container" id="appContainer">
+        <!-- Sidebar for Chat History -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <span class="logo-icon">✦</span>
+                    <h2>IntelliConnect</h2>
+                </div>
+                <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">✕</button>
+            </div>
+            
+            <button class="new-chat-btn" id="newChatBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>New Chat</span>
+            </button>
+            
+            <div class="history-section">
+                <span class="section-title">Recent Chats</span>
+                <div class="chats-list" id="chatsList">
+                    <!-- Dynamic chat history items will go here -->
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <!-- Theme Switcher -->
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+                    <div class="theme-toggle-content">
+                        <span class="theme-icon dark-only">🌙</span>
+                        <span class="theme-icon light-only">☀️</span>
+                        <span class="theme-text">Dark Mode</span>
+                    </div>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Chat Content Area -->
+        <div class="main-content" id="mainContent">
+            <!-- Fixed Header Area -->
+            <header class="app-header" id="appHeader">
+                <div class="header-left">
+                    <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Open Sidebar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="logo-area" id="logoArea">
+                        <div class="title-wrapper">
+                            <h1 id="chatTitle">IntelliConnect</h1>
+                            <span class="status-indicator" id="statusIndicator">
+                                <span class="pulse-dot"></span>Online
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear Current Chat Button -->
+                <button class="reset-btn" id="resetBtn" title="Clear Current Chat" aria-label="Clear Current Chat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    <span>Clear Chat</span>
+                </button>
+            </header>
+
+            <!-- Scrollable Messages Window -->
+            <main class="chat-viewport" id="chatViewport">
+                <!-- Messages will be dynamically appended here via JavaScript -->
+                <div class="messages-list" id="messagesList">
+                    <!-- Welcome Card shown on load -->
+                    <div class="welcome-card" id="welcomeCard">
+                        <div class="welcome-icon">👋</div>
+                        <h2>Meet IntelliConnect</h2>
+                        <p>I am your general-purpose intelligent assistant. Ask me questions, brainstorm ideas, or just chat. How can I help you today?</p>
+                    </div>
+                </div>
+
+                <!-- Typing Indicator (Hidden by default) -->
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="typing-bubble">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Fixed Bottom Input Form -->
+            <footer class="app-footer" id="appFooter">
+                <form class="input-form" id="chatForm" onsubmit="return false;">
+                    <input 
+                        type="text" 
+                        id="userInput" 
+                        placeholder="Ask IntelliConnect something..." 
+                        autocomplete="off" 
+                        maxlength="1000"
+                        required
+                    >
+                    <button type="submit" id="sendBtn" aria-label="Send message">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript controller -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
